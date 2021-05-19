@@ -17,6 +17,7 @@ jobs:
       with:
         node-version: '12.x'
     - run: npm install --save --only=dev @angular/cli@latest
+    - run: npm install --save-dev @angular-devkit/build-angular
     - run: npm install -g @angular/cli@latest
     - run: ng update
     - run: npm run build --prod
