@@ -1,7 +1,7 @@
 name: Firebase CI/CD
 
 on:
-  push:
+  push:node-version: ${{ matrix.node }}node-version: ${{ matrix.node }}
     branches:
     - master
 
@@ -9,17 +9,14 @@ jobs:
   firebase-deploy:
 
     runs-on: ubuntu-latest
-    strategy:
-        matrix:
-          node: ['10', '12', '14' ]
-    name: Node ${{ matrix.node }} sample
+
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node }}
+        node-version: 11.x
     - name: Install dependencies
-      run: npm install
+      run: npm install -g @angular/cli@11.0.0
     - run: npm test
     - name: Build
       run: npm run build
