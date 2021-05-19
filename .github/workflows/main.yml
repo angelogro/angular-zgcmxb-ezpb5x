@@ -1,7 +1,7 @@
 name: Firebase CI/CD
 
 on:
-  push:node-version: ${{ matrix.node }}node-version: ${{ matrix.node }}
+  push:
     branches:
     - master
 
