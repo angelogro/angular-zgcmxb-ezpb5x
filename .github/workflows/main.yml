@@ -9,14 +9,18 @@ jobs:
   firebase-deploy:
 
     runs-on: ubuntu-latest
-
+    strategy:
+        matrix:
+          node: ['10', '12', '14' ]
+    name: Node ${{ matrix.node }} sample
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
-        node-version: '10.x'
+        node-version: ${{ matrix.node }}
     - name: Install dependencies
       run: npm install
+    - run: npm test
     - name: Build
       run: npm run build
     - uses: w9jds/firebase-action@master
